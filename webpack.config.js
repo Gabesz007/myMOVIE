@@ -13,7 +13,8 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin({
             patterns: [
-                {from: './index.html', to: DIST_DIR}
+                {from: './index.html', to: DIST_DIR},
+                { from: "./assets", to: path.resolve(DIST_DIR, "assets") },
             ]
         })
     ],
@@ -32,5 +33,6 @@ module.exports = {
         static: {
             directory: DIST_DIR
         },
+        port: 9000,
     },
 }

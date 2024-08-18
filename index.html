@@ -4,8 +4,6 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <script src="bundle.js" type="module"></script>
         <link rel="icon" type="icon"  href="assets/favicon.ico" />
         <link rel="stylesheet" href="styles.css">
@@ -14,14 +12,16 @@
     
     <body>
         <div class="header">
-            <!-- <img src="assets/tv.jpg" alt="picture"> -->
+            <div class="image-box">
+                <img src="assets/tvback.png" alt="picture" width="150px" height="auto">
+            </div>
             <h1>myMOVIE <br>⏯<br>movie dataBase</h1>
         </div>
         <div class="search-bar">
             <div class="form-container">
-                <form action="">
-                    <div id="movie-title" class="form-item">
-                        <input type="text" placeholder="Title of the movie">
+                <form action="" id="movie-form">
+                    <div class="form-item">
+                        <input type="text" id="movie-title" style="font-style: italic;" placeholder="Movie's title ...">
                     </div>
 
                     <div id="date-from" class="form-item">
@@ -32,10 +32,8 @@
                             <button type="submit">SEARCH</button>
                         </div>
                     </div>
-                    <div class="content">
-
-
-
+                    <div id="table-container">
+                        
                     </div>
 
                 </form>
