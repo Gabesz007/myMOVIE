@@ -34,39 +34,38 @@ const searchMovie = (title) => {
 }
 
 
-const data = [
-    ["Név", "Kor", "Város"],
-    ["Anna", "28", "Budapest", "xiii.kerület"],
-    ["Béla", "34", "Szeged"],
-    ["Csaba", "23", "Debrecen"]
-];
-
 const createTable = (data) => {
-
     // A táblázat létrehozása
-    // Táblázat elem létrehozása
     const table = document.createElement("table");
     table.border = 1; // Táblázat határvonalak (nem kötelező)
 
-    // Táblázat sorainak létrehozása
-    data.forEach((rowData, rowIndex) => {
+    // Fejléc sor hozzáadása
+    const headerRow = document.createElement("tr");
+    const headers = ["Filmcím", "Megjelenés ideje", "Műfaj"]; // Az állandó oszlopnevek
+
+    headers.forEach(headerText => {
+        const headerCell = document.createElement("th");
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+    });
+
+    table.appendChild(headerRow); // Fejléc hozzáadása a táblázathoz
+
+    // Táblázat sorainak létrehozása az adatok alapján
+    data.forEach(rowData => {
         const row = document.createElement("tr");
 
         rowData.forEach(cellData => {
-            // Ha az első sorban járunk, hozzunk létre fejléc cellát
-            const cell = document.createElement(rowIndex === 0 ? "th" : "td");
+            const cell = document.createElement("td");
             cell.textContent = cellData;
             row.appendChild(cell);
         });
 
         table.appendChild(row);
     });
-    
-    const tableContainer = document.getElementById("table-container");
-    const myTable = createTable(data);
-    tableContainer.appendChild(myTable);
 
+    const tableContainer = document.getElementById("table-container");
+    tableContainer.appendChild(table); // A táblázat hozzáadása a containerhez
 }
 
-// A táblázat beszúrása a HTML dokumentumba
 
