@@ -21,7 +21,8 @@ const searchMovie = (title) => {
         })
         .then(data => {
             // console.log(data);
-            const myMovie = data.map(item => [item.show.name, item.show.premiered, item.show.genres]);
+            const myMovie = data.map(item => [item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A"
+        ]);
             console.log(myMovie)
             const movieName = data[0];
 
@@ -50,14 +51,19 @@ const createTable = (data) => {
     });
 
     table.appendChild(headerRow); // Fejléc hozzáadása a táblázathoz
+    headerRow.className = "glow-border";
+    headerRow.style.borderRadius = "5px";
 
     // Táblázat sorainak létrehozása az adatok alapján
     data.forEach(rowData => {
         const row = document.createElement("tr");
+        row.className = "glow-border";
+        row.style.textAlign = "center";
 
         rowData.forEach(cellData => {
             const cell = document.createElement("td");
             cell.textContent = cellData;
+            cell.className = "glow-border";
             row.appendChild(cell);
         });
 
