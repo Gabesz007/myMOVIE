@@ -13,20 +13,20 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin({
             patterns: [
-                {from: './index.html', to: DIST_DIR},
+                { from: './index.html', to: DIST_DIR },
                 { from: "./assets", to: path.resolve(DIST_DIR, "assets") },
             ]
         })
     ],
     module: {
         rules: [
-        {
-            test: /\.css$/i,
-            use: [
-            "style-loader",
-            "css-loader"
-            ]
-        },
+            {
+                test: /\.css$/i,
+                use: [
+                    "style-loader",
+                    "css-loader"
+                ]
+            },
         ]
     },
     devServer: {
@@ -34,5 +34,13 @@ module.exports = {
             directory: DIST_DIR
         },
         port: 9000,
+        proxy: {
+            '/api': {
+                target: 'https://api.tvmaze.com',
+                changeOrigin: true,
+                pathRewrite: { '^/api': '' }, 
+                secure: false, 
+            },
+        }
     },
 }
