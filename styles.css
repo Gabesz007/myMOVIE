@@ -1,42 +1,33 @@
-
-:root{
+:root {
     --font-color: black;
     --primary-color: rgb(248, 245, 245);
     --secondary-color: rgb(221, 184, 140);
     --secondary-color-light: rgb(247, 229, 209);
 }
 
-body {   
+body {
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
     background: var(--primary-color);
+   
+    
 }
 
 
 .header {
-    background: linear-gradient(to bottom,  #2a50f8 30%, rgb(145, 145, 224), var(--primary-color));
+    background: linear-gradient(to bottom, #2a50f8 30%, rgb(145, 145, 224), var(--primary-color));
     /* background: linear-gradient(to bottom right,  #ff0000, #ff7300, #ffb000, #48ff00,
     #00ffd5, #002dff, #ff00c8, #ff0000); */
     /* background: radial-gradient( rgb(4, 4, 105) 20%, white, rgb(200, 8, 8), white,rgb(4, 4, 105)); */
     padding: 2px 24px;
     justify-content: center;
     text-align: center;
-}   
-
-
-/* .image-box {
-    margin: 0; 
-    max-width: 100%;
-    height: auto;
-    padding: 10px 0 0 0;
-    justify-content: center;
-    text-align: center;
-} */
+}
 
 
 h1 {
-    color:var(--secondary-color-light);
-    text-shadow: 22px 2px 3px rgba(0,0,0,0.7);
+    color: var(--secondary-color-light);
+    text-shadow: 22px 2px 3px rgba(0, 0, 0, 0.7);
     -webkit-text-stroke: 1px var(--secondary-color);
     padding: 0 20px 5px 20px;
 }
@@ -49,13 +40,13 @@ h1 {
 }
 
 
-.search-bar > .form-container > form {
+.search-bar>.form-container>form {
     margin: 0;
     display: grid;
     justify-content: space-around;
     text-align: center;
     gap: 10px;
-    padding: 5px 10px;                                                                                                                                                                                                               
+    padding: 5px 10px;
 }
 
 
@@ -69,7 +60,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:var(--primary-color);
+    background-color: var(--primary-color);
     overflow: hidden;
     transform: scale(1.5);
     /* animation: ; */
@@ -86,7 +77,7 @@ button {
     z-index: 0;
     border-radius: 10px;
 
-} 
+}
 
 
 button::after {
@@ -104,11 +95,9 @@ button::after {
 
 button::before {
     content: "";
-    background: linear-gradient(
-        45deg,
-        #ff0000, #ff7300, #ffb000, #48ff00,
-        #00ffd5, #002dff, #ff00c8, #ff0000
-    );
+    background: linear-gradient(45deg,
+            #ff0000, #ff7300, #ffb000, #48ff00,
+            #00ffd5, #002dff, #ff00c8, #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -124,12 +113,20 @@ button::before {
 
 }
 
-    @keyframes glowing {
-        0% {background-position: 0 0;}
-        50% {background-position: 400% 0;}
-        100% {background-position: 0 0;}
-    
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
     }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+
+}
 
 
 button:hover::before {
@@ -150,15 +147,62 @@ button:active {
 
 
 #table-container {
+    display: flex;
     margin: 1px 0 0 0;
     padding: 10px 0 0 0;
-    background: var(--secondary-color-light);
+    min-width: 1200px;
+    max-width: auto;
+    height: auto;
+    justify-content: center;
+    text-align: center;
+    background: var(--primary-color);
+    
+}
+
+table {
+    width: 800px;
+    height: auto;
+    box-shadow: -1px, 12px, 12px, -6px, rgba(0, 0, 0, 0.5);
+    
 }
 
 
-/* Gabesz! Scripten belül használom, a táblázatban */
-.glow-border {
-    border: 1px solid wheat; 
-    box-shadow: 0 0 6px black; 
-    border-radius: 5px;
+table,
+td,
+th {
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+    text-align: center;
+    cursor: pointer;
 }
+
+td {
+    font-size: 18px;
+}
+
+th {
+    background-color: #2a50f8;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: lightblue;
+}
+
+tr:nth-child(odd):hover {
+    background-color: dodgerblue;
+    color: white;
+    transform: scale(1.5);
+    transition: transform 300ms ease-in;
+}
+tr:nth-child(even) {
+    background-color: #ededed;
+}
+
+tr:nth-child(even):hover {
+    background-color: lightgray;
+    transform: scale(1.5);
+    transition: transform 300ms ease-in;
+}
+

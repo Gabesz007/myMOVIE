@@ -71,6 +71,7 @@ const createTableMovie = async (data) => {
     // Fejléc sor hozzáadása
     const headerRow = document.createElement("tr");
     const headers = ["ID", "Title", "Relesed time", "Genres", "Actors"]; // Az állandó oszlopnevek
+    
 
     headers.forEach(headerText => {
         const headerCell = document.createElement("th");
