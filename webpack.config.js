@@ -34,13 +34,14 @@ module.exports = {
             directory: DIST_DIR
         },
         port: 9000,
-        proxy: {
-            '/api': {
+        proxy: [
+            {
+                context: ['/api'],
                 target: 'https://api.tvmaze.com',
                 changeOrigin: true,
-                pathRewrite: { '^/api': '' }, 
-                secure: false, 
-            },
-        }
+                pathRewrite: { '^/api': '' },
+                secure: false, // Ha https-t használsz és nincs hitelesített tanúsítvány
+            }
+        ]
     },
 }

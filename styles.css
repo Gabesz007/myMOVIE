@@ -59,6 +59,11 @@ h1 {
 }
 
 
+.form-item {
+    padding: 2px;
+}
+
+
 .btn-holder {
     padding: 10px;
     display: flex;
@@ -145,6 +150,8 @@ button:active {
 
 
 #table-container {
+    margin: 1px 0 0 0;
+    padding: 10px 0 0 0;
     background: var(--secondary-color-light);
 }
 

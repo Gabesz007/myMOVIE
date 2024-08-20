@@ -4,14 +4,15 @@ export const initForm = () => {
     form.addEventListener('submit', e => {
         e.preventDefault();
         const title = document.getElementById('movie-title').value;
-        console.log(title);
+        // console.log(title);
         searchMovie(title);
+        console.log(searchCastByMovieId(28));
+        
     })
 }
 
-
-const searchMovie = (title) => {
-    const searchUrl = `https://api.tvmaze.com/search/shows?q=${title}`
+const searchCastByMovieId = async (movieId) => {
+    const searchUrl = `https://api.tvmaze.com/shows/${movieId}/cast`;
     fetch(searchUrl)
         .then(result => {
             if (!result.ok) {
@@ -21,13 +22,29 @@ const searchMovie = (title) => {
         })
         .then(data => {
             // console.log(data);
-            const myMovie = data.map(item => [item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A"
-        ]);
-            console.log(myMovie)
-            const movieName = data[0];
+            const myCast = data.map(item => [item.person.name || "N/A"]);
+            console.log(myCast[0]);
+            return myCast[0];
+        })
+        .catch(error => {
+            console.error('Probléma van a FETCH-el:', error);
+        });
+}
 
-            createTable(myMovie)
-            console.log(`A(z) ${movieName.show.name} című film ${movieName.show.premiered}-án/én lett bemutatva. Műfaját tekintve ${movieName.show.genres}.`);
+const searchMovie = async (title) => {
+    const searchUrl = `https://api.tvmaze.com/search/shows?q=${title}`
+    fetch(searchUrl)
+        .then(result => {
+            if (!result.ok) {
+                throw new Error('Nincsen válasz, HIBA!' + result.statusText);
+            }
+            return result.json();
+        })
+        .then(data => {
+            const myMovie = data.map(item => [item.show.id || "N/A", item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A"
+            ]);
+
+            createTableMovie(myMovie)
         })
         .catch(error => {
             console.error('Probléma van a FETCH-el:', error);
@@ -35,14 +52,25 @@ const searchMovie = (title) => {
 }
 
 
-const createTable = (data) => {
+
+
+const createTableMovie = async (data) => {
     // A táblázat létrehozása
     const table = document.createElement("table");
-    table.border = 1; // Táblázat határvonalak (nem kötelező)
+    table.border = 1;
+    console.log(data);
+    let movieIdArray = [];
+    
+    data.forEach(movie => {
+        const actors = searchCastByMovieId(movie[0]);
+        movieIdArray.push(movie[0]);
+        console.log(actors);
+    });
+    console.log(movieIdArray);
 
     // Fejléc sor hozzáadása
     const headerRow = document.createElement("tr");
-    const headers = ["Filmcím", "Megjelenés ideje", "Műfaj"]; // Az állandó oszlopnevek
+    const headers = ["ID", "Title", "Relesed time", "Genres", "Actors"]; // Az állandó oszlopnevek
 
     headers.forEach(headerText => {
         const headerCell = document.createElement("th");
@@ -55,6 +83,7 @@ const createTable = (data) => {
     headerRow.style.borderRadius = "5px";
 
     // Táblázat sorainak létrehozása az adatok alapján
+    console.log(data);
     data.forEach(rowData => {
         const row = document.createElement("tr");
         row.className = "glow-border";
@@ -73,5 +102,4 @@ const createTable = (data) => {
     const tableContainer = document.getElementById("table-container");
     tableContainer.appendChild(table); // A táblázat hozzáadása a containerhez
 }
-
 
