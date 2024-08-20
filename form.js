@@ -43,8 +43,8 @@ const searchMovie = async (title) => {
         .then(data => {
             const myMovie = data.map(item => [item.show.id || "N/A", item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A"
             ]);
-
-            createTableMovie(myMovie)
+            deletTable();
+            createTableMovie(myMovie);
         })
         .catch(error => {
             console.error('Probléma van a FETCH-el:', error);
@@ -103,3 +103,7 @@ const createTableMovie = async (data) => {
     tableContainer.appendChild(table); // A táblázat hozzáadása a containerhez
 }
 
+const deletTable = () => {
+    const tableContainer = document.getElementById("table-container");
+    tableContainer.innerHTML = ""
+}
