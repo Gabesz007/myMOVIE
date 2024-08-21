@@ -4,10 +4,8 @@ export const initForm = () => {
     form.addEventListener('submit', e => {
         e.preventDefault();
         const title = document.getElementById('movie-title').value;
-        // console.log(title);
         searchMovie(title);
         console.log(searchCastByMovieId(28));
-        
     })
 }
 
@@ -21,7 +19,6 @@ const searchCastByMovieId = async (movieId) => {
             return result.json();
         })
         .then(data => {
-            // console.log(data);
             const myCast = data.map(item => [item.person.name || "N/A"]);
             console.log(myCast[0]);
             return myCast[0];
@@ -52,10 +49,7 @@ const searchMovie = async (title) => {
 }
 
 
-
-
 const createTableMovie = async (data) => {
-    // A táblázat létrehozása
     const table = document.createElement("table");
     table.border = 1;
     console.log(data);
@@ -68,22 +62,19 @@ const createTableMovie = async (data) => {
     });
     console.log(movieIdArray);
 
-    // Fejléc sor hozzáadása
     const headerRow = document.createElement("tr");
-    const headers = ["ID", "Title", "Relesed time", "Genres", "Status", "Ended", "Actors"]; // Az állandó oszlopnevek
+    const headers = ["ID", "Title", "Relesed time", "Genres", "Status", "Ended", "Actors"];
     
-
     headers.forEach(headerText => {
         const headerCell = document.createElement("th");
         headerCell.textContent = headerText;
         headerRow.appendChild(headerCell);
     });
 
-    table.appendChild(headerRow); // Fejléc hozzáadása a táblázathoz
+    table.appendChild(headerRow);
     headerRow.className = "glow-border";
     headerRow.style.borderRadius = "5px";
 
-    // Táblázat sorainak létrehozása az adatok alapján
     console.log(data);
     data.forEach(rowData => {
         const row = document.createElement("tr");
@@ -99,9 +90,9 @@ const createTableMovie = async (data) => {
 
         table.appendChild(row);
     });
-
+    
     const tableContainer = document.getElementById("table-container");
-    tableContainer.appendChild(table); // A táblázat hozzáadása a containerhez
+    tableContainer.appendChild(table); 
 }
 
 const deletTable = () => {
