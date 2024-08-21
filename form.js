@@ -5,34 +5,35 @@ export const initForm = () => {
         e.preventDefault();
         const title = document.getElementById('movie-title').value;
         searchMovie(title);
-        console.log(searchCastByMovieId(28));
     })
 }
 
 
-document.getElementById("resetBtn").addEventListener("click", function() {
-    location.reload();
+document.getElementById("resetBtn").addEventListener("click", function () {
+    deletTable()
 });
 
 
-const searchCastByMovieId = async (movieId) => {
-    const searchUrl = `https://api.tvmaze.com/shows/${movieId}/cast`;
-    fetch(searchUrl)
-        .then(result => {
-            if (!result.ok) {
-                throw new Error('Nincsen válasz, HIBA!' + result.statusText);
-            }
-            return result.json();
-        })
-        .then(data => {
-            const myCast = data.map(item => [item.person.name || "N/A"]);
-            console.log(myCast[0]);
-            return myCast[0];
-        })
-        .catch(error => {
-            console.error('Probléma van a FETCH-el:', error);
-        });
-}
+// const searchCastByMovieId = async (movieId) => {
+//     const searchUrl = `https://api.tvmaze.com/shows/${movieId}/cast`;
+//     fetch(searchUrl)
+//         .then(result => {
+//             if (!result.ok) {
+//                 throw new Error('Nincsen válasz, HIBA!' + result.statusText);
+//             }
+//             return result.json();
+//         })
+//         .then(data => {
+//             const myCast = data.map(item => [item.person.name || "N/A"]);
+//             console.log(myCast[0]);
+//             return myCast[0];
+//         })
+//         .catch(error => {
+//             console.error('Probléma van a FETCH-el:', error);
+//         });
+// }
+// Ez lett volna külön egy színész kereső. 
+
 
 const searchMovie = async (title) => {
     const searchUrl = `https://api.tvmaze.com/search/shows?q=${title}`
@@ -58,19 +59,9 @@ const searchMovie = async (title) => {
 const createTableMovie = async (data) => {
     const table = document.createElement("table");
     table.border = 1;
-    console.log(data);
-    let movieIdArray = [];
-    
-    data.forEach(movie => {
-        const actors = searchCastByMovieId(movie[0]);
-        movieIdArray.push(movie[0]);
-        console.log(actors);
-    });
-    console.log(movieIdArray);
-
     const headerRow = document.createElement("tr");
-    const headers = ["ID", "Title", "Relesed time", "Genres", "Status", "Ended", "Actors"];
-    
+    const headers = ["ID", "Title", "Relesed time", "Genres", "Status", "Ended"];
+
     headers.forEach(headerText => {
         const headerCell = document.createElement("th");
         headerCell.textContent = headerText;
@@ -81,7 +72,6 @@ const createTableMovie = async (data) => {
     headerRow.className = "glow-border";
     headerRow.style.borderRadius = "5px";
 
-    console.log(data);
     data.forEach(rowData => {
         const row = document.createElement("tr");
         row.className = "glow-border";
@@ -98,7 +88,7 @@ const createTableMovie = async (data) => {
     });
 
     const tableContainer = document.getElementById("table-container");
-    tableContainer.appendChild(table); 
+    tableContainer.appendChild(table);
 }
 
 const deletTable = () => {
