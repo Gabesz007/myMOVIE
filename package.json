@@ -1,5 +1,5 @@
 {
-  "name": "crime_source",
+  "name": "myMOVIE",
   "version": "1.0.0",
   "description": "Crime search in the UK via API",
   "main": "app.js",
