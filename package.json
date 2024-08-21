@@ -1,7 +1,7 @@
 {
   "name": "myMOVIE",
   "version": "1.0.0",
-  "description": "Crime search in the UK via API",
+  "description": "Series and their informations search.",
   "main": "app.js",
   "scripts": {
     "start": "webpack server",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gabesz007/crime_source.git"
+    "url": "git+https://github.com/Gabesz007/myMOVIE.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,9 +20,9 @@
     "url": "^0.11.4"
   },
   "bugs": {
-    "url": "https://github.com/Gabesz007/crime_source/issues"
+    "url": "https://github.com/Gabesz007/myMOVIE/issues"
   },
-  "homepage": "https://github.com/Gabesz007/crime_source#readme",
+  "homepage": "https://github.com/Gabesz007/myMOVIE#readme",
   "devDependencies": {
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
