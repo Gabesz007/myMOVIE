@@ -41,7 +41,7 @@ module.exports = {
                 target: 'https://api.tvmaze.com',
                 changeOrigin: true,
                 pathRewrite: { '^/api': '' },
-                secure: false, // Ha https-t használsz és nincs hitelesített tanúsítvány
+                secure: false,
             }
         ]
     },
