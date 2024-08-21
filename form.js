@@ -41,7 +41,7 @@ const searchMovie = async (title) => {
             return result.json();
         })
         .then(data => {
-            const myMovie = data.map(item => [item.show.id || "N/A", item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A"
+            const myMovie = data.map(item => [item.show.id || "N/A", item.show.name || "N/A", item.show.premiered || "N/A", item.show.genres.length > 0 ? item.show.genres.join(", ") : "N/A", item.show.status || "N/A", item.show.ended || "N/A"
             ]);
             deletTable();
             createTableMovie(myMovie);
@@ -70,7 +70,7 @@ const createTableMovie = async (data) => {
 
     // Fejléc sor hozzáadása
     const headerRow = document.createElement("tr");
-    const headers = ["ID", "Title", "Relesed time", "Genres", "Actors"]; // Az állandó oszlopnevek
+    const headers = ["ID", "Title", "Relesed time", "Genres", "Status", "Ended", "Actors"]; // Az állandó oszlopnevek
     
 
     headers.forEach(headerText => {
