@@ -5,22 +5,45 @@
     --secondary-color-light: rgb(247, 229, 209);
 }
 
+
 body {
     margin: 0;
     background: var(--primary-color);
-   
-    
 }
 
 
 .header {
-    /* background-image: url("assets/tvback.png"); */
     background: linear-gradient(to bottom, #2a50f8 30%, rgb(145, 145, 224), var(--primary-color));
     padding: 2px 24px;
     justify-content: center;
     text-align: center;
 }
 
+
+input {
+    font-family: "font-family: Snell Roundhand, cursive;";
+    font-style: italic;
+    text-align: center;
+    padding: 0;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-color: #27fcfc;
+}
+
+
+input:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px #00ffff;
+}
+
+::placeholder {
+    background: transparent;
+    color: #700b0b;
+    text-align: center;
+}
 
 h1 {
     color: var(--secondary-color-light);
@@ -31,11 +54,8 @@ h1 {
 }
 
 
-
 .search-bar {
-    /* background-color: var(--primary-color); */
     background-color: var(--primary-color);
-
 }
 
 
@@ -44,7 +64,7 @@ h1 {
     display: grid;
     justify-content: space-around;
     text-align: center;
-    gap: 10px;;
+    gap: 10px;
 }
 
 
@@ -61,7 +81,6 @@ h1 {
     background-color: var(--primary-color);
     overflow: hidden;
     transform: scale(1.5);
-    /* animation: ; */
 }
 
 
@@ -154,8 +173,9 @@ button:active {
     justify-content: center;
     text-align: center;
     background: var(--primary-color);
-    
+
 }
+
 
 table {
     width: 1200px;
@@ -174,18 +194,22 @@ th {
     cursor: pointer;
 }
 
+
 td {
     font-size: 18px;
 }
+
 
 th {
     background-color: #2a50f8;
     color: white;
 }
 
+
 tr:nth-child(odd) {
     background-color: lightblue;
 }
+
 
 tr:nth-child(odd):hover {
     background-color: dodgerblue;
@@ -193,19 +217,15 @@ tr:nth-child(odd):hover {
     transform: scale(1.5);
     transition: transform 300ms ease-in;
 }
+
+
 tr:nth-child(even) {
     background-color: #ededed;
 }
+
 
 tr:nth-child(even):hover {
     background-color: lightgray;
     transform: scale(1.5);
     transition: transform 300ms ease-in;
-}
-
-::placeholder {
-    background: transparent;
-    color: #700b0b;
-    text-align: center;
-    font-family: "Snell Roundhand, cursive";
 }
