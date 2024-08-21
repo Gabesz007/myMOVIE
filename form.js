@@ -9,6 +9,12 @@ export const initForm = () => {
     })
 }
 
+
+document.getElementById("resetBtn").addEventListener("click", function() {
+    location.reload();
+});
+
+
 const searchCastByMovieId = async (movieId) => {
     const searchUrl = `https://api.tvmaze.com/shows/${movieId}/cast`;
     fetch(searchUrl)
@@ -90,7 +96,7 @@ const createTableMovie = async (data) => {
 
         table.appendChild(row);
     });
-    
+
     const tableContainer = document.getElementById("table-container");
     tableContainer.appendChild(table); 
 }
@@ -99,3 +105,4 @@ const deletTable = () => {
     const tableContainer = document.getElementById("table-container");
     tableContainer.innerHTML = ""
 }
+
